@@ -1,0 +1,13 @@
+# dependencies
+node_modules/
+
+# secrets - NEVER commit these
+.env
+.env.*
+.env.example
+
+# logs / tooling
+*.log
+npm-debug.log*
+coverage/
+.DS_Store
