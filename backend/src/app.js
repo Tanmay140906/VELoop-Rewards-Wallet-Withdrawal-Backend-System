@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import config from './config/env.js';
 import routes from './routes/index.js';
+import { ensureDbConnection } from './middleware/ensureDbConnection.js';
 import { notFound } from './middleware/notFound.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
@@ -27,7 +28,7 @@ app.get('/api/health', (_req, res) => {
   res.status(200).json({ success: true, status: 'ok' });
 });
 
-app.use('/api', routes);
+app.use('/api', ensureDbConnection, routes);
 
 app.use(notFound);
 app.use(errorHandler);
